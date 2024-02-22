@@ -33,14 +33,14 @@ app.get("/api/", (req,res)=>{
 
 app.get("/api/:date", (req,res)=>{
   let input=req.params.date
-  if (input.length>10){
+  if (Number(input)===Number(input)){
     input=Number(input)
   }
-  // console.log(input.length)
-  // console.log(input)
+  
   let unix_time;
   let utc;
-  let flag=console.log(validDate(input))
+  let flag=validDate(input)
+
   if (flag){
     unix_time=new Date(input).getTime()
     utc=new Date(input).toUTCString()
@@ -51,9 +51,6 @@ app.get("/api/:date", (req,res)=>{
     res.json({error:"Invalid Date"})
 
   }
-  
-  
-  
   
 })
 
